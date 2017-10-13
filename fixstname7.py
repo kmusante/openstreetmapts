@@ -7,22 +7,22 @@ OSMFILE = "samplek100.osm"
 street_type_re = re.compile(r'\b\S+\.?$', re.IGNORECASE)
 
 # ignore expected case
-expected = ["Street", "Avenue", "Alley", "Bay", "Boulevard", "Drive", "Center", "Court", "Place", "Plaza" "Square", "Lane", "Road", 
-            "Trail", "Parkway", "Commons", "Real", "Way", "Broadway", "Terrace", "Loop"]
+expected = ["Street", "Avenue", "Alley", "Bay", "Boulevard", "Drive", "Circle", "Center", "Court", "Place", "Plaza", 
+            "Square", "Lane", "Road", "Trail", "Parkway", "Commons", "Real", "Way", "Broadway", 
+            "Terrace", "Loop", "Walk"]
 
 
-'''mapping = { "St": "Street",
+mapping = { "St": "Street",
             "st": "Street",
             "St.": "Street", 
             "St":  "Street",
             "Ave.": "Avenue",
             "Ave": "Avenue", 
             "AVE": "Avenue",
-            "ave": "Avenue,
-            "Blvd.": Boulevard
-            
+            "ave": "Avenue",
+            "Blvd.": "Boulevard",
             "Rd.": "Road"
-            }'''
+            }
 
 
 def audit_street_type(street_types, street_name):
@@ -63,14 +63,26 @@ def audit(osmfile):
 def update_name(name, mapping):
     #assign var to regular expression and pull out last word
     last_word = street_type_re.search(name)
-    #i dont fully understand this command but I got it from the forums
     #it takes the regular expression and translates it
-    last_word = last_word.group()
+            
     for e in mapping:
         if last_word == e:
-            print name[:-len(last_word)], '7777'
+            #print name[:-len(last_word)], '7777'
             name = name[:-len(last_word)] + mapping[e]
-            
+     
     return name
+
 # updates street names
-audit(OSMFILE)
+
+def update_street():
+    st_types = audit(OSMFILE)
+    #assert len(st_types) == 3
+    #formats dictionary
+    pprint.pprint(dict(st_types))
+
+    for st_type, ways in st_types.iteritems():
+        for name in ways:
+            better_name = update_name(name, mapping)
+            #print name, "=>", better_name
+            
+update_street()
