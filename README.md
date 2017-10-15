@@ -1,6 +1,7 @@
 # openstreetmapts
 Udacity problem set for k musante
 py files are descriptive and each are numbered in accordance with their order in my jupyter notebook
+I added 'fixstate9.py' after i submitted my project for review so although there are 2 #9, you should reivew the fixstate9.py first.
 I realize some of the py files were not required but I wanted to include some of the work i did to test my data
 I used SF, CA as my data set as it was closest to my home....which was too small to be used for this project.
 The URL whene i downloaded my osm file is here:  https://mapzen.com/data/metro-extracts/ and under United States and San Francisco
