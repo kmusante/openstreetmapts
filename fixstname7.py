@@ -85,4 +85,4 @@ def update_street():
             better_name = update_name(name, mapping)
             #print name, "=>", better_name
             
-update_street()
+#update_street()

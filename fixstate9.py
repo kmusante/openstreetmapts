@@ -44,4 +44,4 @@ def update_states():
         
 # truncates  states name to 'CA' OR returns all non identified entries 
 
-update_states()
+#update_states()

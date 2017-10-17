@@ -5,8 +5,11 @@ import re
 import xml.etree.cElementTree as ET
 
 import cerberus
-
+# import cleaning files
 import schema
+import fixstname7 
+import fixpostalcode8 
+import fixstate9 
 
 OSM_PATH = "samplek100.osm"
 
@@ -33,6 +36,11 @@ def load_new_tag(element, secondary, default_tag_type):
     """
     Load a new tag dict to go into the list of dicts for way_tags, node_tags
     """
+    #load cleaning files
+    fixstname7.update_street()
+    fixpostalcode8.process_postcode(OSM_PATH)
+    fixstate9.update_states()
+
     new = {}
     new['id'] = element.attrib['id']
     if ":" not in secondary.attrib['k']:

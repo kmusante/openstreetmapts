@@ -1,6 +1,6 @@
 import xml.etree.cElementTree as ET
 
-OSMFILE="samplek100.osm"
+OSM_PATH="samplek100.osm"
 
 def process_postcode(filename):
     users = {}
@@ -27,7 +27,7 @@ def update_zip(zip):
 # updates street names
 
 def update_street():
-    post_code=process_postcode(OSMFILE)
+    post_code=process_postcode(OSM_PATH)
     #formats dictionary
     pprint.pprint(dict(users))
 
@@ -38,4 +38,4 @@ def update_street():
 # truncates 9 digit post codes to 5
 # returns all non digit entries and entries not equal to either 9 or 5 digits
 
-process_postcode(OSMFILE)
+#process_postcode(OSM_PATH)
